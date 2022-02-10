@@ -1,0 +1,118 @@
+{
+    "default-answers": {
+        "error-answer": "There was an error: ",
+        "no-answer": "Sorry, but I do not have an answer to that."
+    },
+    "intents": [
+        {
+            "name":"greeting",
+            "samples":[
+                "hi",
+                "hello",
+                "greetings"
+            ],
+            "context":[],
+            "answers":[
+                "Hi!",
+                "Hello!"
+            ]
+        },
+        {
+            "name":"about me",
+            "samples":[
+                "who are you",
+                "what are you",
+                "what can you do",
+                "how can you help me",
+                "are you a bot",
+                "tell me about yourself"
+            ],
+            "context":["you", "help", "bob"],
+            "answers":[
+                "i am a chatbot, programmed by a guy called Bruno to illustrate a simple way to interact with a computer via text.",
+                "i am Bob, which stand for Bruno's own bot."
+            ]
+        },
+        {
+            "name":"bob",
+            "samples":[
+                "why bob",
+                "what does bob mean",
+                "why are you called bob"
+            ],
+            "context":["bob"],
+            "answers":[
+                "Bob stands for Bruno's own Bot."
+            ]
+        },
+        {
+            "name":"programmer info",
+            "samples":[
+                "who programmed you",
+                "who wrote you",
+                "who developed you"
+            ],
+            "context":["bruno", "bob"],
+            "answers":[
+                "I was programmed by a guy called Bruno."
+            ]
+        },
+        {
+            "name":"bruno",
+            "samples":[
+                "who is bruno",
+                "is bruno a programmer",
+                "tell me more about bruno"
+            ],
+            "context":["bruno"],
+            "answers":[
+                "Bruno is a former software engineer, who now works in project management, but still writes stuff like me in hist free time and also blogs about it."
+            ]
+        },
+        {
+            "name":"bruno's free time",
+            "samples":[
+                "what kind of stuff does bruno write",
+                "what else does bruno write",
+                "what stuff"
+            ],
+            "context":["bruno"],
+            "answers":[
+                "Mostly machine learning stuff, but he also sometimes build little things using Arduinos."
+            ]
+        },
+        {
+            "name":"bruno's blog",
+            "samples":[
+                "where can i find bruno blog",
+                "do you know the url of the blog"
+            ],
+            "context":["bruno", "blog"],
+            "answers":[
+                "You can find his blog at hautzenberger.at"
+            ]
+        },
+        {
+            "name":"about bruno's blog",
+            "samples":[
+                "what is the blog about",
+                "which topics does bruno blog about",
+                "which topics can I find at the blog"
+            ],
+            "context":["bruno", "blog"],
+            "answers":[
+                "Bruno blogs about photography, software development and also food."
+            ]
+        },
+        {
+            "name":"Arduino",
+            "samples":[
+                "what is an arduino"
+            ],
+            "context":["arduino"],
+            "answers":[
+                "An Arduino is a little programmable microcontroller, if you want to know more visit arduino.cc"
+            ]
+        }
+    ]
+}
