@@ -1,4 +1,5 @@
 import random
+from language_helper import sentence_to_normalized_word_list
 
 class Intent:
     """
@@ -8,11 +9,22 @@ class Intent:
 
     def __init__(self, name, samples, context, answers):
         self.name = name
-        self.samples = self.prepare_inputs(samples)
-        self.context = self.prepare_inputs(context)
+        self.samples = self.prepare_sample(samples)
+        self.context = self.prepare_context(context)
         self.answers = answers
 
-    def prepare_inputs(self, inputs):
+    def prepare_sample(self, inputs):
+        """
+        returns a cleaned list of input samples
+        """
+        prepared_inputs = []
+
+        for input in inputs:
+            prepared_inputs.append(sentence_to_normalized_word_list(input))
+
+        return prepared_inputs
+
+    def prepare_context(self, inputs):
         """
         returns a cleaned list of inputs (sample questions or context).
         It replaces things like dots and questions marks and also converts
@@ -21,18 +33,7 @@ class Intent:
         prepared_inputs = []
 
         for input in inputs:
-            input = input.replace(".", " ")
-            input = input.replace(",", " ")
-            input = input.replace("?", " ")
-            input = input.replace("!", " ")
-            input = input.replace("\"", " ")
-            input = input.replace("'", " ")
-            input = input.replace("-", " ")
-            input = input.replace("/", " ")
-            input = input.replace("\\", " ")
-            input = input.upper()
-
-            prepared_inputs.append(input)
+            prepared_inputs += sentence_to_normalized_word_list(input)
 
         return prepared_inputs
 
@@ -53,8 +54,7 @@ class Intent:
                 words.append(word)
 
         for sample in self.samples:
-            sample_words = sample.split(" ")
-            for word in sample_words:
+            for word in sample:
                 if word not in words:
                     words.append(word)
 

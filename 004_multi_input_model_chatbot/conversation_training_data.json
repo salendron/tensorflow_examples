@@ -27,7 +27,7 @@
                 "are you a bot",
                 "tell me about yourself"
             ],
-            "context":["you", "help", "bob"],
+            "context":["you", "bob", "bruno"],
             "answers":[
                 "i am a chatbot, programmed by a guy called Bruno to illustrate a simple way to interact with a computer via text.",
                 "i am Bob, which stand for Bruno's own bot."
@@ -52,7 +52,7 @@
                 "who wrote you",
                 "who developed you"
             ],
-            "context":["bruno", "bob"],
+            "context":["bruno"],
             "answers":[
                 "I was programmed by a guy called Bruno."
             ]

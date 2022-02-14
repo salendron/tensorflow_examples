@@ -1,6 +1,7 @@
 import json
 from intent import Intent
 import numpy as np
+from language_helper import sentence_to_normalized_word_list
 
 class ConversationTrainingData:
     """
@@ -50,6 +51,7 @@ class ConversationTrainingData:
         self.dictionary = []
 
         # training data
+        self.len_samples = 0
         self.len_inputs = 0
         self.len_outputs = 0
         self.sample_question_training_data = None
@@ -89,6 +91,8 @@ class ConversationTrainingData:
         #the correct intent
         train_labels = []
 
+        self.len_samples = 0
+
         #iterate over all intents
         for i, intent in enumerate(self.intents):
             #get and prepare the intent context
@@ -101,13 +105,13 @@ class ConversationTrainingData:
                 #and also for the case of no context, the None item we've aded before.
                 for context in context_items:
                     #build sample imput
-                    words = list(set(sample.split(" ")))
                     train_sample_input = np.zeros(len(self.dictionary))
-                    for word in words:
+                    for word in sample:
                         word_index = self.dictionary.index(word)
                         train_sample_input[word_index] = 1.
 
                     train_sample_questions.append(train_sample_input)
+                    self.len_samples += 1
 
                     #build context context
                     train_context_input = np.zeros(len(self.dictionary))
@@ -133,17 +137,7 @@ class ConversationTrainingData:
         helper method to convert a user input to a numerical input array
         so our model can process it.
         """
-        input = sentence.replace(".", " ")
-        input = input.replace(",", " ")
-        input = input.replace("?", " ")
-        input = input.replace("!", " ")
-        input = input.replace("\"", " ")
-        input = input.replace("'", " ")
-        input = input.replace("-", " ")
-        input = input.replace("/", " ")
-        input = input.replace("\\", " ")
-        input = input.upper()
-        words = list(set(input.split(" ")))
+        words = sentence_to_normalized_word_list(sentence)
 
         input = np.zeros(len(self.dictionary))
 
